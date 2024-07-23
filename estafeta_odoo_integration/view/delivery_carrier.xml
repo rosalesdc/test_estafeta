@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="estafeta_shiipping_provider_details" model="ir.ui.view">
+        <field name="name">delivery.carrier</field>
+        <field name="model">delivery.carrier</field>
+        <field name="inherit_id" ref="delivery.view_delivery_carrier_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='destination']" position='before'>
+                <page string="Estafeta Configuration" name="estafeta_configuration"
+                      attrs="{'invisible': [('delivery_type', '!=', 'estafeta_provider')]}">
+                    <group>
+                        <group>
+                            <field name="company_id"
+                                   attrs="{'required': [('delivery_type', '=', 'estafeta_provider')]}"/>
+                            <field name="estafeta_provider_package_id"
+                                   attrs="{'required': [('delivery_type', '=', 'estafeta_provider')]}"/>
+                            <field name="estafeta_default_service_type_id"
+                                   attrs="{'required': [('delivery_type', '=', 'estafeta_provider')]}"/>
+                            <field name="estafeta_service_type_id"
+                                   attrs="{'required': [('delivery_type', '=', 'estafeta_provider')]}"/>
+                            <field name="estafeta_parcel_id"
+                                   attrs="{'required': [('delivery_type', '=', 'estafeta_provider')]}"/>
+                            <field name="estafeta_output_type"
+                                   attrs="{'required': [('delivery_type', '=', 'estafeta_provider')]}"/>
+                            <field name="estafeta_output_group"
+                                   attrs="{'required': [('delivery_type', '=', 'estafeta_provider')]}"/>
+                            <field name="estafeta_response_mode"
+                                   attrs="{'required': [('delivery_type', '=', 'estafeta_provider')]}"/>
+                            <field name="estafeta_printing_template"
+                                   attrs="{'required': [('delivery_type', '=', 'estafeta_provider')]}"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

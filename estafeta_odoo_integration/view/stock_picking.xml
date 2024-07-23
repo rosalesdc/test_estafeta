@@ -1,0 +1,52 @@
+<odoo>
+    <data>
+        <record id="estafeta_shipping_delivery_order_view" model="ir.ui.view">
+            <field name="name">stock.picking</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook" position='inside'>
+                    <page string="Estafeta Information"
+                          attrs="{'invisible': [('delivery_type', '!=', 'estafeta_provider')]}">
+                        <field name="estafeta_shipping_charge_ids" readonly="1">
+                            <tree nolabel="1" readonly="1">
+                                <field name="estafeta_service_code"/>
+                                <field name="estafeta_service_name"/>
+                                <field name="estafeta_modality"/>
+                                <field name="estafeta_total_amount"/>
+                                <button type='object' class="fa fa-arrow-right oe_link" name="set_service"
+                                        string="Use Service"/>
+                            </tree>
+                        </field>
+                        <group>
+                            <field name="estafeta_shipping_charge_id" readonly="1"/>
+                        </group>
+                    </page>
+                </xpath>
+                <xpath expr="//notebook" position='inside'>
+                    <page string="Estafeta Tracking Status"
+                          attrs="{'invisible': [('delivery_type', '!=', 'estafeta_provider')]}">
+                        <group>
+                            <field name="estafeta_code"/>
+                            <field name="estafeta_english_name"/>
+                            <field name="estafeta_local_date_time"/>
+                            <field name="estafeta_spanish_name"/>
+                            <field name="estafeta_warehouse_code"/>
+                            <field name="estafeta_warehouse_name"/>
+                        </group>
+                    </page>
+                </xpath>
+                <xpath expr="/form/header/button[last()]" position="after">
+                    <button type="object" name="get_estafeta_rate" string="Get Estafeta Charges"
+                            attrs="{'invisible':[('delivery_type','!=','estafeta_provider')]}"/>
+                    <button type="object" name="get_estafeta_tracking_status" string="Get Estafeta Tracking Status"
+                            attrs="{'invisible':[('delivery_type','!=','estafeta_provider')]}"/>
+                </xpath>
+
+                <xpath expr="//field[@name='origin']" position="after">
+                    <field name="estafeta_no_of_packages"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
